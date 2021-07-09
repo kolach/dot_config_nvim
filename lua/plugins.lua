@@ -87,6 +87,9 @@ return require('packer').startup(function(use)
 
     use { 'buztard/vim-rel-jump' }
 
+    -- Terminal
+    use { 'kassio/neoterm' }
+
     -- Highlight words and lines on the cursor for Neovim
     -- use { 'yamatsum/nvim-cursorline' }
 
