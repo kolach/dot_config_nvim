@@ -8,6 +8,7 @@ require("dapui").setup()
 
 require('dbg.rust')
 require('dbg.go')
+require('dbg.node')
 
 -- nvim-dap
 -- vim.fn.sign_define('DapBreakpoint', {text = '🟥', texthl = '', linehl = '', numhl = ''})
@@ -17,10 +18,16 @@ local utils = require('utils')
 
 -- key mappings
 utils.map('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>')
+utils.map('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
+utils.map('n', '<F6>', '<cmd>lua require"dbg.node".attach()<CR>')
 utils.map('n', '<leader>dsv', '<cmd>lua require"dap".step_over()<CR>')
+utils.map('n', '<F10>', '<cmd>lua require"dap".step_over()<CR>')
 utils.map('n', '<leader>dsi', '<cmd>lua require"dap".step_into()<CR>')
+utils.map('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
 utils.map('n', '<leader>dso', '<cmd>lua require"dap".step_out()<CR>')
+utils.map('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
 utils.map('n', '<leader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+utils.map('n', '<F8>', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
 
 utils.map('n', '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>')
 utils.map('n', '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>')
