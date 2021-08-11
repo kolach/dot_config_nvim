@@ -23,6 +23,14 @@ return require('packer').startup(function(use)
 
     -- Treesitter for better syntax highlighting
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter-textobjects'}
+    use {'nvim-treesitter/nvim-treesitter-refactor'}
+    use {'JoosepAlviste/nvim-ts-context-commentstring'}
+    use {'p00f/nvim-ts-rainbow'}
+    use {'romgrk/nvim-treesitter-context'}
+    use {'windwp/nvim-ts-autotag'} -- Auto Close and Auto Rename HTML Tag
+    use {'nvim-treesitter/playground'}
+
     use { 'scrooloose/nerdtree' }
 
 
@@ -48,6 +56,9 @@ return require('packer').startup(function(use)
     use {'rcarriga/nvim-dap-ui'}
     use {'Pocco81/DAPInstall.nvim'}
     use {'jbyuki/one-small-step-for-vimkind'}
+
+    -- tests
+    use { 'vim-test/vim-test' }
 
     -- Snippets
     use { 'norcalli/snippets.nvim' }
@@ -80,7 +91,10 @@ return require('packer').startup(function(use)
     }
 
     -- Comments
-    use { 'tyru/caw.vim' }
+    -- use { 'tyru/caw.vim' }
+    use { 'tpope/vim-commentary' }
+
+
 
     -- navigate to github line <leader>gh
     use { 'ruanyl/vim-gh-line' }
@@ -99,5 +113,17 @@ return require('packer').startup(function(use)
 
     use {'datwaft/bubbly.nvim', config = function()
     end}
+
+    -- HTTP request tester
+    -- https://github.com/NTBBloodbath/rest.nvim
+    use {
+      'kolach/rest.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('rest-nvim').setup({
+          result_split_horizontal = false,
+        })
+      end
+    }
 end)
 

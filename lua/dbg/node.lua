@@ -38,16 +38,37 @@ dap.configurations.typescript = {
         protocol = 'inspector',
         console = 'integratedTerminal'
     },
-    {
-        type = 'node2',
-        request = 'attach',
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = 'inspector',
-        skipFiles = { '<node_internals>/**' },
-        console = 'integratedTerminal'
-    }
 }
+
+local function debugJest(testName, filename)
+  print("starting " .. testName .. " from file " .. filename)
+  dap.run({
+    type = "node2",
+    request = "launch",
+    cwd = vim.fn.getcwd(),
+    outFiles = {'${workspaceFolder}/dist/**/*.js'},
+    runtimeArgs = {
+      '--inspect-brk',
+      '-r',
+      'ts-node/register',
+      './node_modules/jest/bin/jest.js',
+      '--runInBand',
+      '--no-coverage',
+      '-t', testName,
+      '--', filename
+    },
+    sourceMaps = true,
+    protocol = "inspector",
+    skipFiles = { '<node_internals>/**' },
+    console = 'integratedTerminal',
+    port = 9229,
+  })
+end
+
+
+  -- dap.run({ type = "node2", request = "launch", cwd = vim.fn.getcwd(), runtimeArgs = { '--inspect-brk', './node_modules/.bin/jest', '--no-coverage', '-t', testName, '--', filename }, sourceMaps = true, protocol = "inspector", skipFiles = { '<node_internals>/**' }, console = 'integratedTerminal', port = 9229, })
+  -- dap.run({ type = "node2", request = "launch", cwd = vim.fn.getcwd(), outFiles = {'${workspaceFolder}/dist/**/*.js'}, runtimeArgs = { '--inspect-brk', '-', 'ts-node/register', './node_modules/jest/bin/jest.js', '--runInBand', '--no-coverage', '-t', testName, '--', filename }, sourceMaps = true, protocol = "inspector", skipFiles = { '<node_internals>/**' }, console = 'integratedTerminal', port = 9229, })
+
 
 local function attach()
   print("attaching to running process")
@@ -61,5 +82,6 @@ local function attach()
 end
 
 return {
+  debugJest = debugJest,
   attach = attach
 }

@@ -17,3 +17,7 @@ utils.map('n', '<C-x>3', ':split<CR>')
 utils.map('n', '<Leader>T', ':lua require\'lsp_extensions\'.inlay_hints()<CR>')
 
 utils.map('n', '<Leader>pp', ':lua require\'telescope\'.extensions.project.project{}<CR>')
+
+
+utils.map('n', '<Leader>rr', ':lua require\'rest-nvim\'.run()<CR>')
+utils.map('n', '<Leader>rp', ':lua require\'rest-nvim\'.run(true)<CR>')
