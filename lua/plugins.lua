@@ -94,8 +94,6 @@ return require('packer').startup(function(use)
     -- use { 'tyru/caw.vim' }
     use { 'tpope/vim-commentary' }
 
-
-
     -- navigate to github line <leader>gh
     use { 'ruanyl/vim-gh-line' }
 
@@ -114,8 +112,22 @@ return require('packer').startup(function(use)
     use {'datwaft/bubbly.nvim', config = function()
     end}
 
+    -- use { 'lukas-reineke/indent-blankline.nvim' }
+    use { 'onsails/lspkind-nvim' }
+
+    use {
+      "AckslD/nvim-neoclip.lua",
+      config = function()
+        require('neoclip').setup()
+        -- require('neoclip').setup({
+        --   history = 1000,
+        --   filter = nil,
+        -- })
+      end,
+    }
+
     -- HTTP request tester
-    -- https://github.com/NTBBloodbath/rest.nvim
+    -- https://github.com/kolach/rest.nvim
     use {
       'kolach/rest.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
