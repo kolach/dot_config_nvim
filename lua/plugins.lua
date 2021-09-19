@@ -100,7 +100,7 @@ return require('packer').startup(function(use)
     use { 'buztard/vim-rel-jump' }
 
     -- Terminal
-    use { 'kassio/neoterm' }
+    -- use { 'kassio/neoterm' }
 
     -- Highlight words and lines on the cursor for Neovim
     -- use { 'yamatsum/nvim-cursorline' }
@@ -118,7 +118,9 @@ return require('packer').startup(function(use)
     use {
       "AckslD/nvim-neoclip.lua",
       config = function()
-        require('neoclip').setup()
+        require('neoclip').setup({
+          default_register = '"',
+        })
         -- require('neoclip').setup({
         --   history = 1000,
         --   filter = nil,
