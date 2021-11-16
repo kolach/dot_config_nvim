@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
     use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
 
     -- dashboard
-    use { 'glepnir/dashboard-nvim' }
+    -- use { 'glepnir/dashboard-nvim' }
 
     -- which-key
     use { 'folke/which-key.nvim' }
@@ -36,10 +36,18 @@ return require('packer').startup(function(use)
 
     -- LSP and completion
     use { 'neovim/nvim-lspconfig' }
-    use { 'nvim-lua/completion-nvim' }
-    use { 'steelsojka/completion-buffers' } -- bufers completion source for completion-nvim
+    -- use { 'nvim-lua/completion-nvim' }
+    -- use { 'steelsojka/completion-buffers' } -- bufers completion source for completion-nvim
     use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/lsp-status.nvim' }
+
+    use {
+      'ms-jpq/coq_nvim',
+      branch = 'coq',
+      event = "VimEnter",
+      config = 'vim.cmd[[COQnow]]'
+    }
+    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
     -- Editorconfig
     use { 'editorconfig/editorconfig-vim' }
